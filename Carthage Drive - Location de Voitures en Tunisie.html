@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carthage Drive | Location de Voitures en Tunisie - Meilleurs Tarifs en TND</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            900: '#0f172a',
+                        },
+                        accent: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 58, 138, 0.82) 100%),
+                        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
+        .car-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .car-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.06);
+        }
+        .pulse-whatsapp {
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            animation: pulse-green 2s infinite;
+        }
+        @keyframes pulse-green {
+            0% {
+                transform: scale(0.98);
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 14px rgba(34, 197, 94, 0);
+            }
+            100% {
+                transform: scale(0.98);
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Top Info Bar -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center gap-1.5">
+                    <i class="fa-solid fa-plane-arrival text-amber-400"></i>
+                    <span>Livraison 24/7 : Aéroports Tunis-Carthage, Enfidha, Monastir & Djerba</span>
+                </span>
+                <span class="hidden md:flex items-center gap-1.5 text-slate-400">|</span>
+                <span class="hidden md:flex items-center gap-1.5">
+                    <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+                    <span>Assurance Tous Risques Incluse</span>
+                </span>
+            </div>
+            <div class="flex items-center space-x-4 ml-auto">
+                <a href="tel:+21620000000" class="hover:text-white transition flex items-center gap-1.5 font-medium">
+                    <i class="fa-solid fa-phone text-brand-500"></i> +216 20 000 000
+                </a>
+                <span class="text-slate-600">|</span>
+                <button onclick="openMyBookingsModal()" class="text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1 transition">
+                    <i class="fa-solid fa-calendar-check"></i> Mes Réservations (<span id="bookingCountBadge">0</span>)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-600 to-slate-900 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition">
+                        <i class="fa-solid fa-car-side text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight text-slate-900">CARTHAGE<span class="text-brand-600">DRIVE</span></span>
+                        <span class="block text-[10px] font-semibold uppercase tracking-widest text-slate-400 -mt-1">Location Auto Tunisie</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
+                    <a href="#accueil" class="text-brand-600 hover:text-brand-700 transition">Accueil</a>
+                    <a href="#flotte" class="hover:text-brand-600 transition">Notre Flotte</a>
+                    <a href="#avantages" class="hover:text-brand-600 transition">Avantages</a>
+                    <a href="#conditions" class="hover:text-brand-600 transition">Conditions & FAQ</a>
+                    <a href="#contact" class="hover:text-brand-600 transition">Contact</a>
+                </nav>
+
+                <!-- Action Buttons -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="https://wa.me/21620000000?text=Bonjour%20Carthage%20Drive,%20je%20souhaite%20avoir%20des%20informations%20pour%20louer%20une%20voiture." target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>WhatsApp Direct</span>
+                    </a>
+                    <button onclick="openBookingModal()" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-brand-600 text-white text-sm font-bold px-5 py-2.5 rounded-xl shadow-sm transition">
+                        <span>Réserver</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex md:hidden items-center gap-2">
+                    <a href="https://wa.me/21620000000" target="_blank" rel="noopener noreferrer" class="bg-emerald-500 text-white p-2.5 rounded-xl">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                    </a>
+                    <button id="mobileMenuBtn" class="text-slate-700 hover:text-slate-900 p-2.5 rounded-xl border border-slate-200 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-slate-100 px-4 pt-3 pb-6 space-y-3 shadow-xl">
+            <a href="#accueil" class="block py-2 text-base font-semibold text-slate-800 hover:text-brand-600">Accueil</a>
+            <a href="#flotte" class="block py-2 text-base font-semibold text-slate-800 hover:text-brand-600">Notre Flotte</a>
+            <a href="#avantages" class="block py-2 text-base font-semibold text-slate-800 hover:text-brand-600">Nos Avantages</a>
+            <a href="#conditions" class="block py-2 text-base font-semibold text-slate-800 hover:text-brand-600">Conditions & FAQ</a>
+            <a href="#contact" class="block py-2 text-base font-semibold text-slate-800 hover:text-brand-600">Contact</a>
+            <div class="pt-2 flex flex-col gap-2">
+                <button onclick="openBookingModal()" class="w-full bg-brand-600 text-white font-bold py-3 rounded-xl shadow">
+                    Réserver une voiture
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero-bg relative text-white pt-14 pb-24 lg:pt-24 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-10 items-center">
+                <!-- Left Text Column -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold text-amber-300">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                        Flotte 2025 / 2026 • Kilométrage Illimité • Sans Frais Cachés
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Louez votre voiture en <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-200">Tunisie</span> en toute confiance.
+                    </h1>
+                    <p class="text-slate-200 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Récupérez votre véhicule dès votre descente d'avion à l'aéroport de <strong>Tunis-Carthage, Enfidha, Monastir ou Djerba</strong>. Des tarifs transparents en Dinars Tunisiens (TND) et un service client disponible 24h/24.
+                    </p>
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#flotte" class="bg-brand-500 hover:bg-brand-600 text-white font-bold px-7 py-4 rounded-xl shadow-lg shadow-brand-500/30 transition flex items-center gap-2">
+                            <span>Découvrir nos voitures</span>
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </a>
+                        <a href="https://wa.me/21620000000?text=Bonjour,%20je%20cherche%20une%20voiture%20de%20location%20en%20Tunisie." target="_blank" rel="noopener noreferrer"
+                           class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-white font-bold px-7 py-4 rounded-xl transition flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i>
+                            <span>Devis rapide sur WhatsApp</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Metrics -->
+                    <div class="pt-6 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 border-t border-white/15 text-left">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-white">+45</div>
+                            <div class="text-xs text-slate-300">Véhicules récents</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-amber-400">4.9/5</div>
+                            <div class="text-xs text-slate-300">Avis clients vérifiés</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400">0 TND</div>
+                            <div class="text-xs text-slate-300">Frais d'annulation*</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Search Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white text-slate-900 rounded-2xl p-6 sm:p-8 shadow-2xl border border-slate-100">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h2 class="text-xl font-extrabold text-slate-900">Recherche Rapide</h2>
+                                <p class="text-xs text-slate-500">Estimez votre tarif en quelques secondes</p>
+                            </div>
+                            <span class="bg-brand-50 text-brand-600 text-xs font-bold px-3 py-1 rounded-lg">Devis Gratuit</span>
+                        </div>
+
+                        <form id="heroSearchForm" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                                    <i class="fa-solid fa-location-dot text-brand-600 mr-1"></i> Lieu de prise en charge
+                                </label>
+                                <select id="heroPickupLocation" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium text-slate-800 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none">
+                                    <option value="Aéroport Tunis-Carthage (TUN)">✈️ Aéroport Tunis-Carthage (TUN)</option>
+                                    <option value="Aéroport Enfidha-Hammamet (NBE)">✈️ Aéroport Enfidha-Hammamet (NBE)</option>
+                                    <option value="Aéroport Monastir-Habib Bourguiba (MIR)">✈️ Aéroport Monastir (MIR)</option>
+                                    <option value="Aéroport Djerba-Zarzis (DJE)">✈️ Aéroport Djerba-Zarzis (DJE)</option>
+                                    <option value="Agence Centre-Ville (Tunis / Lac 2)">🏢 Agence Tunis - Les Berges du Lac 2</option>
+                                    <option value="Livraison Hôtel (Hammamet / Sousse)">🏨 Livraison à votre Hôtel / Domicile</option>
+                                </select>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                                        <i class="fa-regular fa-calendar text-brand-600 mr-1"></i> Date de départ
+                                    </label>
+                                    <input type="date" id="heroStartDate" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-3 text-sm font-medium text-slate-800 focus:ring-2 focus:ring-brand-500 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                                        <i class="fa-regular fa-calendar-check text-brand-600 mr-1"></i> Date de retour
+                                    </label>
+                                    <input type="date" id="heroEndDate" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-3 text-sm font-medium text-slate-800 focus:ring-2 focus:ring-brand-500 outline-none">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                                    <i class="fa-solid fa-gears text-brand-600 mr-1"></i> Préférence boîte de vitesse
+                                </label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <button type="button" onclick="setHeroTransmission('all')" id="transBtn-all" class="hero-trans-btn bg-brand-600 text-white text-xs font-bold py-2.5 rounded-xl border border-brand-600 transition">Toutes</button>
+                                    <button type="button" onclick="setHeroTransmission('Manuelle')" id="transBtn-Manuelle" class="hero-trans-btn bg-slate-50 text-slate-700 text-xs font-bold py-2.5 rounded-xl border border-slate-200 hover:bg-slate-100 transition">Manuelle</button>
+                                    <button type="button" onclick="setHeroTransmission('Automatique')" id="transBtn-Automatique" class="hero-trans-btn bg-slate-50 text-slate-700 text-xs font-bold py-2.5 rounded-xl border border-slate-200 hover:bg-slate-100 transition">Automatique</button>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white font-bold py-4 rounded-xl shadow-lg shadow-brand-500/25 transition flex items-center justify-center gap-2 text-base">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <span>Voir les véhicules disponibles</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fleet Catalog Section -->
+    <section id="flotte" class="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div>
+                <span class="text-brand-600 font-bold text-xs uppercase tracking-widest bg-brand-50 px-3 py-1 rounded-full">Catalogue & Tarifs</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Notre Flotte de Véhicules</h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-1">Voitures climatisées, propres et révisées avant chaque remise des clés.</p>
+            </div>
+
+            <!-- Active Duration Banner -->
+            <div id="activeDurationBanner" class="bg-amber-50 border border-amber-200 rounded-xl px-4 py-2.5 flex items-center gap-3 text-xs sm:text-sm text-amber-900">
+                <i class="fa-solid fa-clock text-amber-500 text-base"></i>
+                <div>
+                    Durée sélectionnée : <strong id="bannerDaysCount">3 jours</strong>
+                    <span class="block text-[11px] text-amber-700">Les prix totaux s'ajustent automatiquement</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
+            <button onclick="filterCars('all')" data-filter="all" class="filter-tab active-tab whitespace-nowrap px-5 py-2.5 rounded-xl text-sm font-bold bg-slate-900 text-white shadow-sm transition">
+                Toutes les voitures
+            </button>
+            <button onclick="filterCars('Economique')" data-filter="Economique" class="filter-tab whitespace-nowrap px-5 py-2.5 rounded-xl text-sm font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">
+                Économique
+            </button>
+            <button onclick="filterCars('Citadine')" data-filter="Citadine" class="filter-tab whitespace-nowrap px-5 py-2.5 rounded-xl text-sm font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">
+                Citadine Confort
+            </button>
+            <button onclick="filterCars('Berline / SUV')" data-filter="Berline / SUV" class="filter-tab whitespace-nowrap px-5 py-2.5 rounded-xl text-sm font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">
+                Berline & SUV
+            </button>
+            <button onclick="filterCars('Automatique')" data-filter="Automatique" class="filter-tab whitespace-nowrap px-5 py-2.5 rounded-xl text-sm font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">
+                <i class="fa-solid fa-wand-magic-sparkles text-amber-500 mr-1"></i> Boîte Automatique
+            </button>
+        </div>
+
+        <!-- Cars Grid Container -->
+        <div id="carsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+            <!-- Populated dynamically via JS -->
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="avantages" class="bg-slate-900 text-white py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-amber-400 font-bold text-xs uppercase tracking-widest bg-white/10 px-3 py-1 rounded-full">Pourquoi choisir Carthage Drive ?</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Un service pensé pour votre tranquillité</h2>
+                <p class="text-slate-400 mt-2 text-sm sm:text-base">Que vous soyez en vacances en famille, de retour au pays (TRE) ou en déplacement professionnel, nous vous garantissons une expérience rapide et sans surprise.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Advantage 1 -->
+                <div class="bg-slate-800/70 border border-slate-700/70 rounded-2xl p-6 hover:border-brand-500 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand-600/20 text-brand-400 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-plane-circle-check"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Accueil Aéroport Gratuit</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Notre agent vous attend au hall d'arrivée avec une pancarte à votre nom, même en cas de retard de votre vol.</p>
+                </div>
+
+                <!-- Advantage 2 -->
+                <div class="bg-slate-800/70 border border-slate-700/70 rounded-2xl p-6 hover:border-brand-500 transition">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-road"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Kilométrage Illimité</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Parcourez toute la Tunisie du Nord au Sud sans compter les kilomètres dès 3 jours de location.</p>
+                </div>
+
+                <!-- Advantage 3 -->
+                <div class="bg-slate-800/70 border border-slate-700/70 rounded-2xl p-6 hover:border-brand-500 transition">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Assistance 24h/24 et 7j/7</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Une équipe joignable à tout moment par téléphone ou WhatsApp et véhicule de remplacement en cas de panne.</p>
+                </div>
+
+                <!-- Advantage 4 -->
+                <div class="bg-slate-800/70 border border-slate-700/70 rounded-2xl p-6 hover:border-brand-500 transition">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Paiement Flexible</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Réglez à la livraison en espèces (TND / EUR), par carte bancaire ou virement sans acompte obligatoire en ligne.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rental Conditions & FAQ Section -->
+    <section id="conditions" class="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-12 items-start">
+            <!-- Left: Key Rental Conditions -->
+            <div class="lg:col-span-5 bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+                <span class="text-brand-600 font-bold text-xs uppercase tracking-widest">Bon à savoir</span>
+                <h3 class="text-2xl font-extrabold text-slate-900 mt-1 mb-6">Conditions de Location</h3>
+
+                <ul class="space-y-5">
+                    <li class="flex items-start gap-3.5">
+                        <div class="w-9 h-9 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center shrink-0 mt-0.5">
+                            <i class="fa-solid fa-id-card"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Âge minimum & Permis</h4>
+                            <p class="text-xs text-slate-600 mt-0.5 leading-relaxed">À partir de <strong>23 ans</strong> avec un permis de conduire valide depuis au moins <strong>2 ans</strong> (permis tunisien ou international/étranger accepté).</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3.5">
+                        <div class="w-9 h-9 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center shrink-0 mt-0.5">
+                            <i class="fa-solid fa-passport"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Documents à présenter</h4>
+                            <p class="text-xs text-slate-600 mt-0.5 leading-relaxed">CIN ou Passeport en cours de validité + Permis de conduire original au moment de la signature du contrat.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3.5">
+                        <div class="w-9 h-9 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center shrink-0 mt-0.5">
+                            <i class="fa-solid fa-shield-cat"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Caution (Dépôt de garantie)</h4>
+                            <p class="text-xs text-slate-600 mt-0.5 leading-relaxed">Caution remboursable à la restitution du véhicule (par empreinte CB, chèque tunisien ou espèces selon catégorie).</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3.5">
+                        <div class="w-9 h-9 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center shrink-0 mt-0.5">
+                            <i class="fa-solid fa-gas-pump"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Politique de Carburant</h4>
+                            <p class="text-xs text-slate-600 mt-0.5 leading-relaxed">Même niveau (le véhicule doit être restitué avec le même niveau de carburant qu'au départ).</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Right: Frequently Asked Questions -->
+            <div class="lg:col-span-7 space-y-4">
+                <div>
+                    <span class="text-brand-600 font-bold text-xs uppercase tracking-widest">Questions Fréquentes</span>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 mb-6">Tout ce qu'il faut savoir avant de réserver</h3>
+                </div>
+
+                <!-- FAQ Item 1 -->
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(1)" class="w-full px-6 py-4 text-left flex justify-between items-center font-bold text-slate-900 hover:bg-slate-50 transition">
+                        <span>Comment se passe la récupération à l'aéroport Tunis-Carthage ?</span>
+                        <i id="faqIcon-1" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div id="faqContent-1" class="px-6 pb-5 text-sm text-slate-600 leading-relaxed">
+                        Lors de votre réservation, vous pouvez indiquer votre numéro de vol. Notre agent vous attendra directement à la sortie des bagages avec le contrat prêt. La remise des clés se fait au parking de l'aéroport en moins de 10 minutes.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(2)" class="w-full px-6 py-4 text-left flex justify-between items-center font-bold text-slate-900 hover:bg-slate-50 transition">
+                        <span>Faut-il payer en avance sur le site pour réserver ?</span>
+                        <i id="faqIcon-2" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div id="faqContent-2" class="hidden px-6 pb-5 text-sm text-slate-600 leading-relaxed">
+                        Non ! La réservation en ligne ou via WhatsApp est <strong>100% gratuite</strong>. Vous bloquez votre voiture et vous payez uniquement le jour de la livraison lorsque vous récupérez les clés.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(3)" class="w-full px-6 py-4 text-left flex justify-between items-center font-bold text-slate-900 hover:bg-slate-50 transition">
+                        <span>Puis-je ajouter un deuxième conducteur ou un siège bébé ?</span>
+                        <i id="faqIcon-3" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div id="faqContent-3" class="hidden px-6 pb-5 text-sm text-slate-600 leading-relaxed">
+                        Oui, bien sûr. Le deuxième conducteur et le siège auto pour bébé/enfant peuvent être sélectionnés dans notre formulaire de réservation pour un petit supplément journalier ou offerts pour les longues durées (+10 jours).
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(4)" class="w-full px-6 py-4 text-left flex justify-between items-center font-bold text-slate-900 hover:bg-slate-50 transition">
+                        <span>Faites-vous des réductions pour les locations longue durée ?</span>
+                        <i id="faqIcon-4" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                    </button>
+                    <div id="faqContent-4" class="hidden px-6 pb-5 text-sm text-slate-600 leading-relaxed">
+                        Absolument ! Pour toute location supérieure à 7 jours ou 15 jours, vous bénéficiez d'une remise automatique pouvant aller jusqu'à -20%. Contactez-nous sur WhatsApp pour une offre personnalisée.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Agency Info Banner -->
+    <section id="contact" class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="bg-gradient-to-r from-brand-700 via-brand-600 to-slate-900 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
+            <div class="grid lg:grid-cols-12 gap-8 items-center relative z-10">
+                <div class="lg:col-span-8 space-y-3">
+                    <span class="bg-white/15 text-amber-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Besoin d'un conseil rapide ?</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold">Réservez directement par Téléphone ou WhatsApp</h2>
+                    <p class="text-blue-100 text-sm sm:text-base max-w-2xl">
+                        Notre équipe commerciale vous répond immédiatement pour vérifier la disponibilité et vous proposer le meilleur tarif selon vos dates.
+                    </p>
+                </div>
+                <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3">
+                    <a href="https://wa.me/21620000000?text=Bonjour%20Carthage%20Drive,%20je%20voudrais%20réserver%20une%20voiture." target="_blank" rel="noopener noreferrer"
+                       class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg flex items-center justify-center gap-2.5 text-base transition">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span>Discuter sur WhatsApp</span>
+                    </a>
+                    <a href="tel:+21620000000"
+                       class="bg-white/10 hover:bg-white/20 border border-white/25 text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 text-sm transition">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>Appeler : +216 20 000 000</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 pt-14 pb-10 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-slate-800">
+                <!-- Col 1 -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-car-side"></i>
+                        </div>
+                        <span class="text-xl font-extrabold text-white">CARTHAGE<span class="text-brand-500">DRIVE</span></span>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Votre partenaire de confiance pour la location de voitures en Tunisie. Service aéroport 24/7 et flotte récente aux meilleurs prix en Dinars.
+                    </p>
+                </div>
+
+                <!-- Col 2 -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Points de Livraison</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><i class="fa-solid fa-plane text-brand-500 mr-2 text-xs"></i> Aéroport Tunis-Carthage</li>
+                        <li><i class="fa-solid fa-plane text-brand-500 mr-2 text-xs"></i> Aéroport Enfidha-Hammamet</li>
+                        <li><i class="fa-solid fa-plane text-brand-500 mr-2 text-xs"></i> Aéroport Monastir</li>
+                        <li><i class="fa-solid fa-plane text-brand-500 mr-2 text-xs"></i> Aéroport Djerba-Zarzis</li>
+                        <li><i class="fa-solid fa-building text-brand-500 mr-2 text-xs"></i> Tunis, Sousse, Hammamet, Nabeul</li>
+                    </ul>
+                </div>
+
+                <!-- Col 3 -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Catégories Populaires</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#flotte" onclick="filterCars('Economique')" class="hover:text-white transition">Citadines Économiques (Picanto, i10)</a></li>
+                        <li><a href="#flotte" onclick="filterCars('Citadine')" class="hover:text-white transition">Compactes (Clio 5, Seat Ibiza)</a></li>
+                        <li><a href="#flotte" onclick="filterCars('Automatique')" class="hover:text-white transition">Voitures Boîte Automatique</a></li>
+                        <li><a href="#flotte" onclick="filterCars('Berline / SUV')" class="hover:text-white transition">SUV & Familiales (Duster, Golf 8)</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4 -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Contact Agence</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-location-dot text-brand-500 mt-1"></i>
+                            <span>Les Berges du Lac 2, 1053 Tunis, Tunisie</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-phone text-brand-500"></i>
+                            <span>+216 20 000 000</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-envelope text-brand-500"></i>
+                            <span>contact@carthagedrive.tn</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+                <p>© 2026 Carthage Drive Tunisie. Tous droits réservés.</p>
+                <p>Conçu pour offrir une expérience de réservation rapide sur mobile et ordinateur.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/21620000000?text=Bonjour%20Carthage%20Drive,%20j'aimerais%20avoir%20un%20devis%20pour%20une%20location%20de%20voiture."
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Contactez-nous sur WhatsApp"
+       class="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shadow-2xl pulse-whatsapp transition">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden bg-slate-900/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl border border-slate-100 overflow-hidden my-8 animate-fadeIn">
+            <!-- Modal Header -->
+            <div class="bg-slate-900 text-white px-6 py-5 flex items-center justify-between">
+                <div>
+                    <span class="text-[11px] font-bold uppercase tracking-widest text-amber-400">Réservation Rapide & Sans Acompte</span>
+                    <h3 class="text-xl font-extrabold mt-0.5">Finaliser votre demande</h3>
+                </div>
+                <button onclick="closeBookingModal()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body Form -->
+            <form id="bookingForm" class="p-6 sm:p-8 space-y-5 max-h-[82vh] overflow-y-auto">
+                <!-- Vehicle Selector -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Véhicule choisi</label>
+                    <select id="modalCarSelect" onchange="updatePriceEstimate()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-slate-900 focus:ring-2 focus:ring-brand-500 outline-none">
+                        <!-- Populated by JS -->
+                    </select>
+                </div>
+
+                <!-- Customer Info -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Nom & Prénom *</label>
+                        <input type="text" id="clientName" required placeholder="Ex: Mehdi Ben Ali" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Téléphone / WhatsApp *</label>
+                        <input type="tel" id="clientPhone" required placeholder="Ex: +216 22 123 456" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                    </div>
+                </div>
+
+                <!-- Location & Flight Number -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Lieu de livraison</label>
+                        <select id="modalPickupLocation" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                            <option value="Aéroport Tunis-Carthage (TUN)">✈️ Aéroport Tunis-Carthage (TUN)</option>
+                            <option value="Aéroport Enfidha-Hammamet (NBE)">✈️ Aéroport Enfidha-Hammamet (NBE)</option>
+                            <option value="Aéroport Monastir-Habib Bourguiba (MIR)">✈️ Aéroport Monastir (MIR)</option>
+                            <option value="Aéroport Djerba-Zarzis (DJE)">✈️ Aéroport Djerba-Zarzis (DJE)</option>
+                            <option value="Agence Centre-Ville (Tunis / Lac 2)">🏢 Agence Tunis - Les Berges du Lac 2</option>
+                            <option value="Livraison Hôtel (Hammamet / Sousse)">🏨 Livraison à votre Hôtel / Domicile</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">N° de Vol (Optionnel)</label>
+                        <input type="text" id="flightNumber" placeholder="Ex: TU 723 / AF 1084" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                    </div>
+                </div>
+
+                <!-- Dates -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Date de départ *</label>
+                        <input type="date" id="modalStartDate" onchange="updatePriceEstimate()" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Date de retour *</label>
+                        <input type="date" id="modalEndDate" onchange="updatePriceEstimate()" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                    </div>
+                </div>
+
+                <!-- Extra Options -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Options supplémentaires</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                        <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer hover:border-brand-500 transition text-xs font-semibold">
+                            <input type="checkbox" id="optBabySeat" onchange="updatePriceEstimate()" class="rounded text-brand-600 focus:ring-brand-500">
+                            <span>Siège Bébé (+10 TND/j)</span>
+                        </label>
+                        <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer hover:border-brand-500 transition text-xs font-semibold">
+                            <input type="checkbox" id="optSecondDriver" onchange="updatePriceEstimate()" class="rounded text-brand-600 focus:ring-brand-500">
+                            <span>2ème Conducteur (Gratuit)</span>
+                        </label>
+                        <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer hover:border-brand-500 transition text-xs font-semibold">
+                            <input type="checkbox" id="optFullInsurance" onchange="updatePriceEstimate()" class="rounded text-brand-600 focus:ring-brand-500">
+                            <span>Rachat Franchise (+25 TND/j)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Live Price Summary Box -->
+                <div class="bg-brand-50/80 border border-brand-100 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-500 block">Estimation pour <strong id="summaryDays" class="text-slate-800">3 jours</strong></span>
+                        <span id="summaryBreakdown" class="text-xs text-slate-500">Tarif véhicule + livraison aéroport gratuite</span>
+                    </div>
+                    <div class="sm:text-right">
+                        <span class="text-xs text-slate-500 block">Total Estimé</span>
+                        <span id="summaryTotalPrice" class="text-2xl font-extrabold text-brand-600">270 TND</span>
+                    </div>
+                </div>
+
+                <!-- Dual Action Buttons -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    <button type="submit" class="w-full bg-slate-900 hover:bg-brand-600 text-white font-bold py-3.5 px-5 rounded-xl shadow transition flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <span>Confirmer sur le site</span>
+                    </button>
+                    <button type="button" onclick="sendBookingViaWhatsApp()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3.5 px-5 rounded-xl shadow transition flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Envoyer par WhatsApp</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Saved Bookings Modal ("Mes Réservations") -->
+    <div id="myBookingsModal" class="fixed inset-0 z-50 hidden bg-slate-900/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-slate-100 overflow-hidden">
+            <div class="bg-slate-900 text-white px-6 py-4 flex items-center justify-between">
+                <h3 class="text-lg font-extrabold"><i class="fa-solid fa-calendar-check text-amber-400 mr-2"></i>Mes Demandes de Réservation</h3>
+                <button onclick="closeMyBookingsModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="myBookingsList" class="p-6 space-y-3 max-h-96 overflow-y-auto">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toastNotification" class="fixed bottom-6 left-6 z-50 hidden bg-slate-900 text-white px-5 py-4 rounded-2xl shadow-2xl border border-slate-700 flex items-center gap-3 max-w-sm">
+        <div class="w-9 h-9 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <h4 id="toastTitle" class="text-sm font-bold">Réservation enregistrée !</h4>
+            <p id="toastMessage" class="text-xs text-slate-300 mt-0.5">Notre agent vous contactera très vite.</p>
+        </div>
+    </div>
+
+    <script>
+        // Agency WhatsApp Number (Replaceable for the client)
+        const AGENCY_WHATSAPP = "21620000000";
+
+        // Popular Rental Fleet in Tunisia with realistic TND pricing
+        const carsData = [
+            {
+                id: "kia-picanto",
+                name: "Kia Picanto GT-Line",
+                category: "Economique",
+                transmission: "Manuelle",
+                fuel: "Essence",
+                seats: 5,
+                doors: 5,
+                luggage: 2,
+                pricePerDay: 85,
+                badge: "Très Demandée",
+                badgeColor: "bg-emerald-500",
+                image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "hyundai-i10",
+                name: "Hyundai Grand i10 (BVA)",
+                category: "Economique",
+                transmission: "Automatique",
+                fuel: "Essence",
+                seats: 5,
+                doors: 5,
+                luggage: 2,
+                pricePerDay: 105,
+                badge: "Boîte Auto",
+                badgeColor: "bg-amber-500",
+                image: "https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "renault-clio5",
+                name: "Renault Clio 5",
+                category: "Citadine",
+                transmission: "Manuelle",
+                fuel: "Essence",
+                seats: 5,
+                doors: 5,
+                luggage: 3,
+                pricePerDay: 110,
+                badge: "Best-Seller",
+                badgeColor: "bg-brand-600",
+                image: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "seat-ibiza",
+                name: "Seat Ibiza FR (BVA)",
+                category: "Citadine",
+                transmission: "Automatique",
+                fuel: "Essence",
+                seats: 5,
+                doors: 5,
+                luggage: 3,
+                pricePerDay: 135,
+                badge: "Finition FR",
+                badgeColor: "bg-rose-600",
+                image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "suzuki-swift",
+                name: "Suzuki Swift Hybride",
+                category: "Citadine",
+                transmission: "Automatique",
+                fuel: "Essence",
+                seats: 5,
+                doors: 5,
+                luggage: 2,
+                pricePerDay: 120,
+                badge: "Faible Conso",
+                badgeColor: "bg-teal-600",
+                image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "vw-golf8",
+                name: "Volkswagen Golf 8 R-Line",
+                category: "Berline / SUV",
+                transmission: "Automatique",
+                fuel: "Essence",
+                seats: 5,
+                doors: 5,
+                luggage: 4,
+                pricePerDay: 210,
+                badge: "Premium",
+                badgeColor: "bg-slate-900",
+                image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "dacia-duster",
+                name: "Dacia Duster 4x2",
+                category: "Berline / SUV",
+                transmission: "Manuelle",
+                fuel: "Diesel",
+                seats: 5,
+                doors: 5,
+                luggage: 5,
+                pricePerDay: 155,
+                badge: "Spacieux Famille",
+                badgeColor: "bg-indigo-600",
+                image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "skoda-octavia",
+                name: "Škoda Octavia Berline",
+                category: "Berline / SUV",
+                transmission: "Automatique",
+                fuel: "Diesel",
+                seats: 5,
+                doors: 5,
+                luggage: 5,
+                pricePerDay: 185,
+                badge: "Grand Coffre",
+                badgeColor: "bg-brand-700",
+                image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "peugeot-208",
+                name: "Peugeot 208 Allure",
+                category: "Citadine",
+                transmission: "Manuelle",
+                fuel: "Essence",
+                seats: 5,
+                doors: 5,
+                luggage: 3,
+                pricePerDay: 115,
+                badge: "Modèle 2025",
+                badgeColor: "bg-brand-600",
+                image: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80"
+            }
+        ];
+
+        let currentFilter = "all";
+        let heroTransmissionPref = "all";
+        let savedBookings = [];
+
+        // Initialize Default Dates (Tomorrow + 3 Days)
+        function initDefaultDates() {
+            const today = new Date();
+            const start = new Date(today);
+            start.setDate(today.getDate() + 1);
+            const end = new Date(today);
+            end.setDate(today.getDate() + 4);
+
+            const formatDate = (d) => d.toISOString().split('T')[0];
+
+            const startStr = formatDate(start);
+            const endStr = formatDate(end);
+
+            document.getElementById('heroStartDate').value = startStr;
+            document.getElementById('heroEndDate').value = endStr;
+            document.getElementById('modalStartDate').value = startStr;
+            document.getElementById('modalEndDate').value = endStr;
+
+            document.getElementById('heroStartDate').min = formatDate(today);
+            document.getElementById('heroEndDate').min = startStr;
+        }
+
+        // Calculate Days Between Two Date Inputs
+        function calculateSelectedDays(startInputId, endInputId) {
+            const startVal = document.getElementById(startInputId).value;
+            const endVal = document.getElementById(endInputId).value;
+            if (!startVal || !endVal) return 3;
+
+            const s = new Date(startVal);
+            const e = new Date(endVal);
+            const diffTime = e - s;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays > 0 ? diffDays : 1;
+        }
+
+        // Render Fleet Grid
+        function renderCarsGrid() {
+            const grid = document.getElementById('carsGrid');
+            const days = calculateSelectedDays('heroStartDate', 'heroEndDate');
+
+            document.getElementById('bannerDaysCount').textContent = `${days} jour${days > 1 ? 's' : ''}`;
+
+            const filtered = carsData.filter(car => {
+                if (currentFilter === 'all') return true;
+                if (currentFilter === 'Automatique') return car.transmission === 'Automatique';
+                if (currentFilter === 'Manuelle') return car.transmission === 'Manuelle';
+                return car.category === currentFilter;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full bg-white rounded-2xl p-10 text-center border border-slate-200">
+                        <p class="text-slate-600 font-semibold">Aucun véhicule dans cette catégorie pour le moment.</p>
+                        <button onclick="filterCars('all')" class="mt-4 bg-brand-600 text-white px-5 py-2.5 rounded-xl text-sm font-bold">Voir toute la flotte</button>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(car => {
+                const totalEstimate = car.pricePerDay * days;
+                const waText = encodeURIComponent(
+                    `Bonjour Carthage Drive, je souhaite réserver la *${car.name}* (${car.transmission}) pour *${days} jour(s)* (Total estimé: ${totalEstimate} TND). Est-elle disponible ?`
+                );
+
+                return `
+                <div class="car-card bg-white rounded-2xl border border-slate-200/90 overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <!-- Image Header -->
+                        <div class="relative h-52 bg-slate-100 overflow-hidden">
+                            <img src="${car.image}" alt="${car.name}"
+                                 onerror="this.src='https://placehold.co/600x400/1e293b/ffffff?text=${encodeURIComponent(car.name)}'"
+                                 class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                            <span class="absolute top-3 left-3 ${car.badgeColor} text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow">
+                                ${car.badge}
+                            </span>
+                            <span class="absolute top-3 right-3 bg-white/95 backdrop-blur-sm text-slate-900 text-xs font-bold px-2.5 py-1 rounded-lg shadow-sm">
+                                ${car.category}
+                            </span>
+                        </div>
+
+                        <!-- Card Content -->
+                        <div class="p-5">
+                            <div class="flex justify-between items-start gap-2">
+                                <h3 class="text-lg font-extrabold text-slate-900">${car.name}</h3>
+                            </div>
+
+                            <!-- Specs Pills -->
+                            <div class="grid grid-cols-2 gap-2 mt-4 text-xs text-slate-600 font-semibold">
+                                <div class="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-100">
+                                    <i class="fa-solid fa-gears text-brand-600"></i>
+                                    <span>${car.transmission}</span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-100">
+                                    <i class="fa-solid fa-gas-pump text-brand-600"></i>
+                                    <span>${car.fuel}</span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-100">
+                                    <i class="fa-solid fa-snowflake text-sky-500"></i>
+                                    <span>Climatisée (A/C)</span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-100">
+                                    <i class="fa-solid fa-user-group text-brand-600"></i>
+                                    <span>${car.seats} Places • ${car.luggage} Valises</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pricing & CTA Footer -->
+                    <div class="px-5 pb-5 pt-3 border-t border-slate-100 bg-slate-50/50">
+                        <div class="flex items-baseline justify-between mb-4">
+                            <div>
+                                <span class="text-xs text-slate-400 font-medium block">À partir de</span>
+                                <span class="text-2xl font-extrabold text-slate-900">${car.pricePerDay} <small class="text-xs font-bold text-brand-600">TND / jour</small></span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[11px] text-slate-500 block">Total (${days}j)</span>
+                                <span class="text-sm font-extrabold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-lg border border-emerald-200">${totalEstimate} TND</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-5 gap-2">
+                            <button onclick="openBookingModal('${car.id}')"
+                                    class="col-span-3 bg-slate-900 hover:bg-brand-600 text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-1.5 shadow-sm">
+                                <i class="fa-regular fa-calendar-check"></i>
+                                <span>Réserver</span>
+                            </button>
+                            <a href="https://wa.me/${AGENCY_WHATSAPP}?text=${waText}" target="_blank" rel="noopener noreferrer"
+                               class="col-span-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-3 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-1.5 shadow-sm">
+                                <i class="fa-brands fa-whatsapp text-base"></i>
+                                <span>WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        // Filter Tab Handler
+        function filterCars(category) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-tab').forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.className = "filter-tab whitespace-nowrap px-5 py-2.5 rounded-xl text-sm font-bold bg-slate-900 text-white shadow-sm transition";
+                } else {
+                    btn.className = "filter-tab whitespace-nowrap px-5 py-2.5 rounded-xl text-sm font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition";
+                }
+            });
+            renderCarsGrid();
+        }
+
+        // Hero Transmission Button Selector
+        function setHeroTransmission(type) {
+            heroTransmissionPref = type;
+            ['all', 'Manuelle', 'Automatique'].forEach(t => {
+                const btn = document.getElementById('transBtn-' + t);
+                if (t === type) {
+                    btn.className = "hero-trans-btn bg-brand-600 text-white text-xs font-bold py-2.5 rounded-xl border border-brand-600 transition";
+                } else {
+                    btn.className = "hero-trans-btn bg-slate-50 text-slate-700 text-xs font-bold py-2.5 rounded-xl border border-slate-200 hover:bg-slate-100 transition";
+                }
+            });
+        }
+
+        // Populate Car Select in Booking Modal
+        function populateModalCarDropdown() {
+            const select = document.getElementById('modalCarSelect');
+            select.innerHTML = carsData.map(car =>
+                `<option value="${car.id}">${car.name} (${car.transmission}) — ${car.pricePerDay} TND / jour</option>`
+            ).join('');
+        }
+
+        // Open Booking Modal
+        function openBookingModal(carId = null) {
+            // Sync dates and location from Hero bar if available
+            const heroStart = document.getElementById('heroStartDate').value;
+            const heroEnd = document.getElementById('heroEndDate').value;
+            const heroLoc = document.getElementById('heroPickupLocation').value;
+
+            if (heroStart) document.getElementById('modalStartDate').value = heroStart;
+            if (heroEnd) document.getElementById('modalEndDate').value = heroEnd;
+            if (heroLoc) document.getElementById('modalPickupLocation').value = heroLoc;
+
+            if (carId) {
+                document.getElementById('modalCarSelect').value = carId;
+            }
+
+            updatePriceEstimate();
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        // Dynamic Price Calculator in Modal
+        function updatePriceEstimate() {
+            const selectedCarId = document.getElementById('modalCarSelect').value;
+            const car = carsData.find(c => c.id === selectedCarId) || carsData[0];
+            const days = calculateSelectedDays('modalStartDate', 'modalEndDate');
+
+            let dailyExtras = 0;
+            if (document.getElementById('optBabySeat').checked) dailyExtras += 10;
+            if (document.getElementById('optFullInsurance').checked) dailyExtras += 25;
+
+            const total = (car.pricePerDay + dailyExtras) * days;
+
+            document.getElementById('summaryDays').textContent = `${days} jour${days > 1 ? 's' : ''}`;
+            document.getElementById('summaryBreakdown').textContent =
+                `${car.pricePerDay} TND/j ${dailyExtras > 0 ? `(+${dailyExtras} TND/j options)` : '• Kilométrage illimité inclus'}`;
+            document.getElementById('summaryTotalPrice').textContent = `${total} TND`;
+
+            return { car, days, total };
+        }
+
+        // Send Modal Details Directly to WhatsApp
+        function sendBookingViaWhatsApp() {
+            const { car, days, total } = updatePriceEstimate();
+            const name = document.getElementById('clientName').value.trim() || "Client";
+            const phone = document.getElementById('clientPhone').value.trim() || "Non renseigné";
+            const location = document.getElementById('modalPickupLocation').value;
+            const flight = document.getElementById('flightNumber').value.trim();
+            const start = document.getElementById('modalStartDate').value;
+            const end = document.getElementById('modalEndDate').value;
+
+            const options = [];
+            if (document.getElementById('optBabySeat').checked) options.push("Siège Bébé");
+            if (document.getElementById('optSecondDriver').checked) options.push("2ème Conducteur");
+            if (document.getElementById('optFullInsurance').checked) options.push("Rachat Franchise");
+
+            const msg =
+`Bonjour *Carthage Drive* 🇹🇳,
+Je souhaite réserver une voiture :
+
+🚗 *Véhicule :* ${car.name} (${car.transmission})
+📅 *Du :* ${start} *Au :* ${end} (${days} jours)
+📍 *Livraison :* ${location}${flight ? `\n✈️ *N° Vol :* ${flight}` : ''}
+✨ *Options :* ${options.length ? options.join(', ') : 'Aucune'}
+💰 *Total estimé :* ${total} TND
+
+👤 *Nom :* ${name}
+📞 *Téléphone :* ${phone}`;
+
+            const url = `https://wa.me/${AGENCY_WHATSAPP}?text=${encodeURIComponent(msg)}`;
+            window.open(url, '_blank');
+        }
+
+        // Handle On-Site Form Confirmation
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const { car, days, total } = updatePriceEstimate();
+            const bookingRecord = {
+                id: 'RES-' + Math.floor(1000 + Math.random() * 9000),
+                carName: car.name,
+                clientName: document.getElementById('clientName').value.trim(),
+                clientPhone: document.getElementById('clientPhone').value.trim(),
+                location: document.getElementById('modalPickupLocation').value,
+                startDate: document.getElementById('modalStartDate').value,
+                endDate: document.getElementById('modalEndDate').value,
+                days,
+                total
+            };
+
+            savedBookings.unshift(bookingRecord);
+            document.getElementById('bookingCountBadge').textContent = savedBookings.length;
+
+            closeBookingModal();
+            showToast(
+                `Réservation ${bookingRecord.id} confirmée !`,
+                `${car.name} (${days}j - ${total} TND). Notre agent vous contactera sur le ${bookingRecord.clientPhone}.`
+            );
+            this.reset();
+            initDefaultDates();
+        });
+
+        // Hero Search Form Handler
+        document.getElementById('heroSearchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (heroTransmissionPref !== 'all') {
+                filterCars(heroTransmissionPref);
+            } else {
+                renderCarsGrid();
+            }
+            document.getElementById('flotte').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Update Fleet Totals Live When Hero Dates Change
+        document.getElementById('heroStartDate').addEventListener('change', renderCarsGrid);
+        document.getElementById('heroEndDate').addEventListener('change', renderCarsGrid);
+
+        // Saved Bookings Modal Logic
+        function openMyBookingsModal() {
+            const list = document.getElementById('myBookingsList');
+            if (savedBookings.length === 0) {
+                list.innerHTML = `
+                    <div class="text-center py-8 text-slate-500">
+                        <i class="fa-regular fa-calendar-xmark text-3xl mb-2 text-slate-400"></i>
+                        <p class="text-sm font-semibold">Vous n'avez aucune réservation enregistrée.</p>
+                        <p class="text-xs mt-1">Choisissez un véhicule dans notre flotte pour effectuer une demande.</p>
+                    </div>
+                `;
+            } else {
+                list.innerHTML = savedBookings.map(b => `
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex justify-between items-center gap-3">
+                        <div>
+                            <span class="text-[11px] font-bold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded">${b.id} • En attente d'appel</span>
+                            <h4 class="font-extrabold text-slate-900 text-sm mt-1">${b.carName}</h4>
+                            <p class="text-xs text-slate-500">${b.startDate} → ${b.endDate} (${b.days}j) • ${b.location}</p>
+                        </div>
+                        <div class="text-right shrink-0">
+                            <span class="font-extrabold text-brand-600 text-base">${b.total} TND</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            document.getElementById('myBookingsModal').classList.remove('hidden');
+        }
+
+        function closeMyBookingsModal() {
+            document.getElementById('myBookingsModal').classList.add('hidden');
+        }
+
+        // FAQ Accordion Toggle
+        function toggleFaq(index) {
+            const content = document.getElementById(`faqContent-${index}`);
+            const icon = document.getElementById(`faqIcon-${index}`);
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Toast Helper
+        function showToast(title, message) {
+            const toast = document.getElementById('toastNotification');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 6000);
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        // Initialize on Window Load
+        window.onload = function() {
+            initDefaultDates();
+            populateModalCarDropdown();
+            renderCarsGrid();
+        };
+    </script>
+</body>
+</html>
